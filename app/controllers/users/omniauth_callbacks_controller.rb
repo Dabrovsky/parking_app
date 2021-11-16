@@ -21,7 +21,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user_signed_in?
       redirect_to root_url
     else
-      sign_in_and_redirect root_url, event: :authentication
+      sign_in_and_redirect @user, event: :authentication
     end
   end
 
