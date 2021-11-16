@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
     booking.status = :active
 
     if booking.save
-      # ReleaseBookingJob.set(wait_until: booking.end_date).perform_later(booking)
+      ReleaseBookingJob.set(wait_until: booking.end_date).perform_later(booking)
       redirect_to bookings_url
     else
       render json: { errors: booking.errors }, status: :unprocessable_entity
