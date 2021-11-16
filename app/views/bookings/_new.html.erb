@@ -1,0 +1,7 @@
+<%= content_for :modal_title, 'Book the place' %>
+
+<h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2"><%= parking.company.name %></h5>
+<small class="text-gray-400">Parking address</small><br>
+<p class="font-normal text-gray-700 mb-6"><%= parking.address %></p>
+
+<%= render partial: 'form', locals: { booking: booking, parking: parking } %>

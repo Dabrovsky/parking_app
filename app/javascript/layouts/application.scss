@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {}
+
+@layer components {
+    @import 'components/pretty-scroll';
+    @import 'components/header';
+    @import 'components/heading';
+    @import 'components/main';
+    @import 'components/button';
+    @import 'components/link';
+    @import 'components/form';
+    @import 'components/cards';
+    @import 'components/card';
+    @import 'components/dropdown';
+    @import 'components/select';
+    @import 'components/modal';
+    @import 'components/nav';
+    @import 'components/section-nav';
+    @import 'components/alert';
+}
+
+@layer utilities {
+    @import 'utilities/spinner';
+}

@@ -1,0 +1,8 @@
+<%= content_for :modal_title, 'Confirm release' %>
+<h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2">Are you sure?</h5>
+<footer class="modal__footer">
+    <div class="form__group form__group--inline">
+        <button class="link w-full modal__close" data-action="click->modal#close">Cancel</button>
+        <%= link_to 'Yes, release', release_booking_url(id), class: "button button--block button--green" %>
+    </div>
+</footer>

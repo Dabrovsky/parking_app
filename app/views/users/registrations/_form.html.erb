@@ -1,0 +1,51 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form w-full", data: { controller: 'form', form_id: :user, form_target: "form", action: "ajax:beforeSend->form#onSubmit ajax:error->form#onError" }, method: :put }, remote: true) do |f| %>
+  <div class="form__group form__group--inline">
+    <div class="w-full">
+      <div class="flex justify-between mb-2">
+          <%= f.label :email, class: "form__label" %>
+      </div>
+      <%= f.email_field :email, class: "form__input", autofocus: true, autocomplete: "email" %>
+    </div>
+    <div class="w-full">
+      <div class="flex justify-between mb-2">
+          <%= f.label :name, class: "form__label" %>
+      </div>
+      <%= f.text_field :name, class: "form__input", autofocus: true, autocomplete: "name" %>
+    </div>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="form__group">
+    <div class="flex justify-between mb-2">
+      <%= f.label :password, class: "form__label" %>
+      <% if @minimum_password_length %>
+        <small>(<%= @minimum_password_length %> characters minimum)</small>
+      <% end %>
+    </div>
+    <%= f.password_field :password, class: "form__input", autocomplete: "new-password", placeholder: "leave blank if you don't want to change it" %>
+  </div>
+
+  <div class="form__group">
+    <div class="flex justify-between mb-2">
+        <%= f.label :password_confirmation, class: "form__label" %>
+    </div>
+    <%= f.password_field :password_confirmation, class: "form__input", autocomplete: "new-password" %>
+  </div>
+
+  <div class="form__group">
+    <div class="flex justify-between mb-2">
+        <%= f.label :current_password, class: "form__label" %> <small>(we need to confirm your changes)</small>
+    </div>
+    <%= f.password_field :current_password, class: "form__input",  autocomplete: "current-password" %>
+  </div>
+
+  <footer class="modal__footer">
+    <div class="form__group form__group--inline">
+        <button class="link w-full modal__close" data-action="click->modal#close">Cancel</button>
+        <%= f.button "Update", class: "button button--block button--blue", data: { form_target: "button" } %>
+    </div>
+  </footer>
+<% end %>

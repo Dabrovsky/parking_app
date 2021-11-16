@@ -1,0 +1,16 @@
+select.js-select {
+    display: none;
+}
+
+.select {
+    @apply flex justify-between items-center;
+    height: 44px;
+
+    &--block {
+        @apply w-full;
+    }
+
+    &__selected {
+        @apply overflow-ellipsis overflow-hidden;
+    }
+}

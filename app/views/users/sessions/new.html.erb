@@ -1,0 +1,72 @@
+<div class="grid grid-cols-2 h-screen">
+  <div class="flex items-center justify-end pr-12">
+    <div class="text-center max-w-xl mt-4">
+        <h2 class="text-6xl font-bold mb-5 text-gray-600">Let's find your<br>parking space!</h2>
+        <div class="text-center mb-10">
+            <span class="inline-block w-1 h-1 rounded-full bg-gray-200 ml-1"></span>
+            <span class="inline-block w-3 h-1 rounded-full bg-gray-200 ml-1"></span>
+            <span class="inline-block w-60 h-1 rounded-full bg-gray-200"></span>
+            <span class="inline-block w-3 h-1 rounded-full bg-gray-200 ml-1"></span>
+            <span class="inline-block w-1 h-1 rounded-full bg-gray-200 ml-1"></span>
+        </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-start">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form form--boxed m-0", data: { controller: "form", form_id: :user, form_target: "form", action: "ajax:beforeSend->form#onSubmit ajax:error->form#onError" }, style: 'margin: 0;' }, remote: true) do |f| %>
+      <header>
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" class="w-24 mx-auto" fill="#3b5887">
+          <g>
+            <path d="M432.8,31H79.2C52.6,31,31,52.6,31,79.2v353.6c0,26.6,21.6,48.2,48.2,48.2h353.6c26.6,0,48.2-21.6,48.2-48.2V79.2
+              C481,52.6,459.4,31,432.8,31z M272.1,320.3h-48.2v48.2c0,8.8-7.2,16.1-16.1,16.1h-32.1c-8.8,0-16.1-7.2-16.1-16.1v-225
+              c0-8.8,7.2-16.1,16.1-16.1h96.4c53.1,0,96.4,43.3,96.4,96.4S325.2,320.3,272.1,320.3z M272.1,191.7h-48.2V256h48.2
+              c17.7,0,32.1-14.5,32.1-32.1S289.8,191.7,272.1,191.7z"/>
+          </g>
+        </svg>
+
+        <div class="flex justify-center flex-col">
+          <span class="text-center text-gray-400">Welcome in</span>
+          <h1 class="mb-6 text-3xl font-semibold text-center text-gray-700">Parking App</h1>
+        </div>
+
+        <h2 class="form__title">
+          Sign in to continue
+        </h2>
+      </header>
+
+      <section>
+        <div class="form__group">
+          <%= f.label :email, class: "form__label" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form__input" %>
+        </div>
+
+        <div class="form__group">
+          <div class="flex justify-between mb-2">
+            <%= f.label :password, class: "form__label" %>
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to "Forgot your password?", new_password_path(resource_name), class: "link link--muted link--sm" %>
+            <% end %>
+          </div>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form__input" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="form__group">
+            <div class="flex items-center">
+              <%= f.check_box :remember_me, class: "h-4 w-4 bg-blue-500 border-gray-200 rounded hover:cursor-pointer focus-visible:border-blue-500" %>
+              <%= f.label :remember_me, class: "form__label ml-2 hover:cursor-pointer" %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="form__group mt-6">
+          <%= f.button "Sign in", class: "button button--block button--blue", data: { form_target: "button" } %>
+        </div>
+      </section>
+
+      <footer class="form__footer">
+        <%= render "devise/shared/links" %>
+      </footer>
+    <% end %>
+  </div>
+</div>

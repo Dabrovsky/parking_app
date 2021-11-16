@@ -1,0 +1,19 @@
+.heading {
+    @apply text-center max-w-xl mx-auto;
+
+    &__title {
+        @apply text-5xl md:text-6xl font-bold text-gray-600;
+    }
+
+    &__subtitle {
+        @apply text-xl font-light;
+    }
+
+    &__lines {
+        @apply text-center mb-10;
+    }
+
+    &__line {
+        @apply inline-block h-1 rounded-full bg-gray-200;
+    }
+}

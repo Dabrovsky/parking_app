@@ -1,0 +1,19 @@
+.alert {
+    @apply flex justify-center sm:justify-start py-5 px-6 mt-4 bg-white shadow rounded-md;
+
+    &__heading {
+        @apply flex flex-row items-center w-auto;
+    }
+
+    &__icon {
+        @apply w-5 h-5;
+    }
+
+    &__title {
+        @apply text-sm font-medium ml-3;
+    }
+
+    &__content {
+        @apply text-sm tracking-wide text-gray-500 ml-3;
+    }
+}

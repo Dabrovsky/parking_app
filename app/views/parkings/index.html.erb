@@ -1,0 +1,24 @@
+<%= render partial: "shared/heading", locals: { title: 'Available Parkings', subtitle: 'Checklist of available parkings' } %>
+<%= render partial: "shared/no_records", locals: { title: 'Sorry.', content: 'No records found on this query.' } unless @parkings.present? %>
+
+<div class="cards">
+    <% @parkings.each do |parking| %>
+        <article class="card">
+            <div class="flex items-center justify-end">
+                <%= available_spots parking %>
+            </div>
+
+            <div class="card__section">
+                <a href="#" class="text-2xl font-bold text-gray-700 dark:text-white hover:text-gray-600 dark:hover:text-gray-200 hover:underline"><%= parking.company.name %></a>
+                <p class="mt-1 text-gray-600 dark:text-gray-300">
+                    <small class="text-gray-400">Parking address</small><br>
+                    <%= parking.address %>
+                </p>
+            </div>
+
+            <div class="card__actions" data-controller="modal" data-modal-target="modal" data-modal-url="<%= new_booking_url(parking_id: parking) %>">
+                <%= button_tag "Book the place", class: "button button--block button--blue #{"button--gray button--disabled" unless parking.spots.map(&:available?).any?}", data: { modal_target: "button", action: "click->modal#open" }, disabled: !parking.spots.map(&:available?).any? %>
+            </div>
+        </article>
+    <% end %>
+</div>

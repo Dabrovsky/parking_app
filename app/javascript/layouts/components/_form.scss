@@ -1,0 +1,43 @@
+.form {
+    @apply w-full;
+
+    &--boxed {
+        @apply max-w-sm m-auto p-6 bg-white rounded-md shadow-md;
+    }
+
+    &__title {
+        @apply text-gray-600 text-center;
+    }
+
+    &__group {
+        @apply mt-4;
+
+        &--inline {
+            @apply flex gap-3;
+        }
+    }
+
+    &__label {
+        @apply block text-sm text-gray-800;
+
+        &.error {
+            @apply text-red-400;
+        }
+    }
+
+    &__input {
+        @apply block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-sm focus:border-blue-500 focus:outline-none focus:ring;
+
+        &.error {
+            @apply border-red-400;
+        }
+    }
+
+    &__footer {
+        @apply mt-4;
+    }
+
+    &__error {
+        @apply pt-1 text-left text-xs text-red-400 italic;
+    }
+}

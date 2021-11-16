@@ -1,0 +1,25 @@
+.modal {
+    @apply fixed inset-0 overflow-y-auto flex items-center justify-center;
+    z-index: 9999;
+
+    &__wrapper {
+        @apply m-1 bg-white rounded-sm shadow p-8;
+        min-width: 450px;
+    }
+
+    &__header {
+        @apply flex justify-between items-center pb-6;
+
+        &.no-padding {
+            @apply p-0;
+        }
+    }
+
+    &__title {
+        @apply text-lg text-gray-500;
+    }
+
+    &__footer {
+        @apply mt-8;
+    }
+}

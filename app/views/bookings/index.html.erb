@@ -1,0 +1,59 @@
+<%= render partial: 'shared/heading', locals: { title: 'Booked Spots', subtitle: 'Checklist of your bookings' } %>
+
+<ul class="section-nav">
+    <li class="section-nav__item">
+        <%= link_to "All", bookings_url, class: "link #{"link--blue" unless params[:status]}" %>
+    </li>
+    <li class="section-nav__item">
+        <%= link_to "Current", bookings_url(status: :active), class: "link #{"link--blue" if params[:status] === :active.to_s}" %>
+    </li>
+    <li class="section-nav__item">
+        <%= link_to "History", bookings_url(status: :archive), class: "link #{"link--blue" if params[:status] === :archive.to_s}" %>
+    </li>
+</ul>
+
+<%= render partial: "shared/no_records", locals: { title: 'Sorry.', content: 'No records found on this query.' } unless @bookings.present? %>
+
+<div class="cards">
+    <% @bookings.each do |booking| %>
+        <article class="card">
+            <div class="card__section">
+                <a href="#" class="text-2xl font-bold text-gray-700 hover:text-gray-600 hover:underline"><%= booking.spot.parking.company.name %></a>
+                <p class="mt-1 text-gray-600">
+                    <small class="text-gray-400">Parking address</small><br>
+                    <%= booking.spot.parking.address %>
+                </p>
+            </div>
+
+            <div class="card__section">
+                <p class="mt-1 text-gray-600">
+                    <small class="text-gray-400">Started at</small><br>
+                    <small><%= I18n.l(booking.start_date, format: :long) %></small>
+                </p>
+            </div>
+
+            <div class="card__section">
+                <div class="mt-1 text-gray-600">
+                    <small class="text-gray-400">Place number</small><br>
+                    <small><%= booking.spot.id %></small>
+                </div>
+
+                <div class="mt-1">
+                    <small class="mt-1 text-gray-600">
+                        <span class="text-gray-400">Car details</span><br>
+                        <%= booking.car_details %>
+                    </small>
+                </div>
+            </div>
+
+            <div class="card__actions card__actions--inline">
+                <div data-controller="modal" data-modal-target="modal" data-modal-url="<%= confirm_destroy_booking_url(booking) %>">
+                    <%= button_tag "Delete", class: "button button--block button--red", data: { modal_target: "button", action: "click->modal#open" } %>
+                </div>
+                <div data-controller="modal" data-modal-target="modal" data-modal-url="<%= confirm_release_booking_url(booking) %>">
+                    <%= button_tag "Release now", class: "button button--block button--#{booking.archive? ? "gray button--disabled" : "green"}", data: { modal_target: "button", action: "click->modal#open" }, disabled: booking.archive? %>
+                </div>
+            </div>
+        </article>
+    <% end %>
+</div>

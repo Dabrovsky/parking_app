@@ -1,0 +1,23 @@
+.link {
+    @apply focus:outline-none focus:text-blue-600 hover:text-blue-600 focus:underline;
+
+    &--semibold {
+        @apply font-semibold;
+    }
+
+    &--sm {
+        @apply text-sm;
+    }
+
+    &--muted {
+        @apply text-gray-400;
+    }
+
+    &--blue {
+        @apply text-blue-500 focus:text-blue-600 hover:text-blue-600;
+    }
+
+    &--red {
+        @apply text-red-500 focus:text-red-600 hover:text-red-600;
+    }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parking App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="h-screen bg-gray-100 antialiased">
+    <header class="header">
+      <div class="mx-auto">
+        <h1 class="text-3xl font-bold text-gray-600 md:text-5xl"><%= current_user.name %></h1>
+        <p class="text-gray-500"><%= current_user.email %></p>
+      </div>
+
+      <nav class="nav">
+        <div class="flex items-center justify-center p-3 mx-auto text-gray-600">
+          <%= link_to "parkings", parkings_url, class: "nav__item #{"nav__item--current" if controller_name === 'parkings'}" %>
+          <%= link_to "bookings", bookings_url, class: "nav__item #{"nav__item--current" if controller_name === 'bookings'}" %>
+          <div data-controller="modal" data-modal-target="modal" data-modal-url="<%= edit_user_registration_url %>" data-modal-spinner="false">
+            <%= button_tag "settings", class: "nav__item", data: { modal_target: "button", action: "click->modal#open" } %>
+          </div>
+          <%= button_to "logout", destroy_user_session_url, class: "nav__item", method: :delete if current_user %>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <%= yield %>
+    </main>
+
+    <div class="flex flex-wrap items-center md:justify-between justify-center">
+      <div class="container px-4 mx-auto text-center">
+        <div class="text-sm text-gray-400 py-6">
+          Copyright © <span id="get-current-year"><%= Date.today.year %></span> Wojciech Dabrovski
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

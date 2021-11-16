@@ -1,0 +1,36 @@
+<%= form_with model: booking, id: :parkings_booking, class: "form w-full", data: { controller: "form", form_id: :booking, form_target: "form", action: "ajax:beforeSend->form#onSubmit ajax:error->form#onError" }, local: false do |f| %>
+    <%= f.hidden_field :timezone, data: { form_target: 'timezone' } %>
+
+    <div class="form__group form__group--inline">
+        <div class="w-full">
+            <%= f.label :spot, "Select spot number", class: "form__label" %>
+            <div data-controller="select">
+                <%= f.select :spot_id, options_for_select(parking.spots.availables.collect {|s| [s.id, s.id]}, booking.spot), {}, { class: "js-select", data: { select_target: "select", classes: "select select--block form__input" } } %>
+            </div>
+        </div>
+
+        <div class="w-full">
+            <%= f.label :start_date, "When to start?", class: "form__label" %>
+            <%= f.datetime_field :start_date, class: "form__input", min: Date.today %>
+        </div>
+    </div>
+
+    <div class="form__group form__group--inline">
+        <div class="w-full">
+            <%= f.label :car_name, class: "form__label" %>
+            <%= f.text_field :car_name, class: "form__input" %>
+        </div>
+
+        <div class="w-full">
+            <%= f.label :car_plates, class: "form__label" %>
+            <%= f.text_field :car_plates, class: "form__input" %>
+        </div>
+    </div>
+
+    <footer class="modal__footer">
+        <div class="form__group form__group--inline">
+            <button class="link w-full modal__close" data-action="click->modal#close">Cancel</button>
+            <%= f.button "Book", class: "button button--block button--blue", data: { form_target: "button" } %>
+        </div>
+    </footer>
+<% end %>

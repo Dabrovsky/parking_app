@@ -1,0 +1,40 @@
+<div class="flex items-center justify-center h-screen">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "form form--boxed", method: :post }) do |f| %>
+    <header>
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" class="w-24 mx-auto" fill="#3b5887">
+        <g>
+          <path d="M432.8,31H79.2C52.6,31,31,52.6,31,79.2v353.6c0,26.6,21.6,48.2,48.2,48.2h353.6c26.6,0,48.2-21.6,48.2-48.2V79.2
+            C481,52.6,459.4,31,432.8,31z M272.1,320.3h-48.2v48.2c0,8.8-7.2,16.1-16.1,16.1h-32.1c-8.8,0-16.1-7.2-16.1-16.1v-225
+            c0-8.8,7.2-16.1,16.1-16.1h96.4c53.1,0,96.4,43.3,96.4,96.4S325.2,320.3,272.1,320.3z M272.1,191.7h-48.2V256h48.2
+            c17.7,0,32.1-14.5,32.1-32.1S289.8,191.7,272.1,191.7z"/>
+        </g>
+      </svg>
+
+      <div class="flex justify-center flex-col">
+        <span class="text-center text-gray-400">Welcome in</span>
+        <h1 class="mb-6 text-3xl font-semibold text-center text-gray-700">Parking App</h1>
+      </div>
+
+      <h2 class="form__title">
+        Forgot your password?
+      </h2>
+    </header>
+
+    <section>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form__group">
+        <%= f.label :email, class: "form__label" %>
+        <%= f.email_field :email, class: "form__input", autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="form__group">
+        <%= f.button "Send me reset password instructions", class: "button button--block button--blue" %>
+      </div>
+    </section>
+
+    <footer class="form__footer">
+      <%= render "devise/shared/links" %>
+    </footer>
+  <% end %>
+</div>

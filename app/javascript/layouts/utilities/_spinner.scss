@@ -1,0 +1,16 @@
+.spinner::after {
+    @apply w-4 h-4 border border-white rounded-full ml-2;
+    content: '';
+    border-right-color: transparent;
+    animation: spin .750s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
