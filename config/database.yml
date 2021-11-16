@@ -50,6 +50,4 @@ test:
 #
 production:
   <<: *default
-  database: parking_app_production
-  username: parking_app
-  password: <%= ENV['PARKING_APP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
