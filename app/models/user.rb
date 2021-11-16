@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable, #:rememberable,
-         :omniauthable, omniauth_providers: [:slack]
+         :omniauthable
 
   has_many :services, dependent: :destroy
   has_many :bookings, dependent: :destroy
