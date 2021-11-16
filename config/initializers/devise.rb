@@ -274,8 +274,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  if Rails.application.credentials.slack.present?
-    config.omniauth :slack, Rails.application.credentials.slack[:client_id], Rails.application.credentials.slack[:client_secret], scope: 'identity.basic'
+  if ENV['CLIENT_ID'] && ENV['CLIENT_SECRET']
+    config.omniauth :slack, ENV['CLIENT_ID'], ENV['CLIENT_SECRET'], scope: 'identity.basic'
   end
 
   # ==> Warden configuration
